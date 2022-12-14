@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <h1>Pleb Wallet</h1>
+        <h1>SMASH WALLET</h1>
     </header>
     <main>
         <div class="buttons">
@@ -50,14 +50,14 @@
         </div>
     </main>
     <footer>
-        <p>Made by plebs, for plebs.</p>
+        <p>SMASH TIME</p>
         <script>
             async function getBitcoinPrice() {
-        var data = await fetch(`https://api.coinbase.com/v2/prices/BTC-USD/spot`);
-        var json = await data.json();
-        var price = json[`data`][`amount`];
-        return price;
-    }
+                var data = await fetch(`https://api.coinbase.com/v2/prices/BTC-USD/spot`);
+                var json = await data.json();
+                var price = json[`data`][`amount`];
+                return price;
+            }
         </script>
         <script>
             var $ = document.querySelector.bind(document);
