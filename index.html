@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LND APP</title>
     <link rel="stylesheet" href="index.css">
-  </head>
-  
-	<body>
+</head>
+
+<body>
     <header>
         <h1>Pleb Wallet</h1>
     </header>
     <main>
         <div class="buttons">
             <button>Send</button>
-            <button>Recieve</button>
+            <button>Receive</button>
         </div>
         <div class="row">
             <div class="balance-card">
@@ -50,42 +51,26 @@
     </main>
     <footer>
         <p>Made by plebs, for plebs.</p>
-    <script>
-        function getData( url ) {
-        return new Promise( function( resolve, reject ) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-        if ( this.readyState == 4 && ( this.status >= 200 &&
-       this.status < 300 ) ) {
-        resolve( xhttp.responseText );
-        };
-        }
-        xhttp.open( `GET`, url, true );
-        xhttp.send();
-        });
-        }
-       </script>
-       <script>
-        async function getBitcoinPrice() {
-        var data = await getData(
-       `https://api.coinbase.com/v2/prices/BTC-USD/spot` );
-        var json = JSON.parse( data );
-        var price = json[ `data` ][ `amount` ];
-        return price;
-        }
-       </script>
         <script>
-            var $ = document.querySelector.bind( document );
-            var $$ = document.querySelectorAll.bind( document );
+            async function getBitcoinPrice() {
+        var data = await fetch(`https://api.coinbase.com/v2/prices/BTC-USD/spot`);
+        var json = await data.json();
+        var price = json[`data`][`amount`];
+        return price;
+    }
+        </script>
+        <script>
+            var $ = document.querySelector.bind(document);
+            var $$ = document.querySelectorAll.bind(document);
             async function app() {
-            var price = await getBitcoinPrice();
-            string_price = Number( price ).toLocaleString();
-            $$( `.balance-card p` )[ 1 ].innerHTML = `$` + string_price;
-            setTimeout( function() {app();}, 10000 );
+                var price = await getBitcoinPrice();
+                string_price = Number(price).toLocaleString();
+                $$(`.balance-card p`)[1].innerHTML = `$` + string_price;
+                setTimeout(function () { app(); }, 10000);
             }
             app();
-           </script>
+        </script>
     </footer>
-  </body>
- 
+</body>
+
 </html>
